@@ -184,7 +184,8 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
 				},
 			});
 		} catch (error) {
-			console.error("Logout failed:", error);
+			// Network error is acceptable during logout - we still want to clear local data
+			console.warn("Backend logout request failed, but continuing with local logout:", error);
 		} finally {
 			setUser(null);
 			setCompany(null);
